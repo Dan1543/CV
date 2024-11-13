@@ -1,0 +1,26 @@
+name: LaTeX Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # Cambia a tu rama principal si no es 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up TeX Live
+        run: sudo apt-get install texlive-full
+
+      - name: Compile LaTeX
+        run: pdflatex Curriculum vitae.tex  # Asegúrate de que el nombre del archivo es correcto
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: cv-pdf
+          path: cv.pdf  # Este es el archivo PDF generado
