@@ -17,7 +17,7 @@ jobs:
         run: sudo apt-get install texlive-full
 
       - name: Compile LaTeX
-        run: pdflatex Curriculum vitae.tex  # Asegúrate de que el nombre del archivo es correcto
+        run: pdflatex cv.tex  # Asegúrate de que el nombre del archivo es correcto
 
       - name: Upload PDF
         uses: actions/upload-artifact@v2
