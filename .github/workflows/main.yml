@@ -1,26 +1,30 @@
-name: LaTeX Build and Deploy
+name: Build and Upload LaTeX CV PDF
 
 on:
   push:
     branches:
-      - main  # Cambia a tu rama principal si no es 'main'
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up TeX Live
-        run: sudo apt-get install texlive-full
+    - name: Set up LaTeX
+      uses: txs/gh-action-pandoc-latex@v2
+      with:
+        pdf: true
 
-      - name: Compile LaTeX
-        run: pdflatex cv.tex  # Asegúrate de que el nombre del archivo es correcto
+    - name: Compile LaTeX file
+      run: |
+        pdflatex -interaction=nonstopmode yourfile.tex
+        pdflatex -interaction=nonstopmode yourfile.tex
 
-      - name: Upload PDF
-        uses: actions/upload-artifact@v2
-        with:
-          name: cv-pdf
-          path: cv.pdf  # Este es el archivo PDF generado
+    - name: Upload PDF Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: cv-pdf
+        path: curriculum.pdf
