@@ -20,8 +20,8 @@ jobs:
 
     - name: Compile LaTeX file
       run: |
-        pdflatex -interaction=nonstopmode yourfile.tex
-        pdflatex -interaction=nonstopmode yourfile.tex
+        pdflatex -interaction=nonstopmode cv.tex
+        pdflatex -interaction=nonstopmode cv.tex
 
     - name: Upload PDF Artifact
       uses: actions/upload-artifact@v3
